@@ -3,11 +3,14 @@
 #include "parserCmdLine.h"
 #include "geoLib.h"
 #include "errorNbool.h"
+#include "Mandelbrot.h"
 
 #define CENTEROFFSET 1.3
 
 void triangleFractal(cardPoint_t a, cardPoint_t b, cardPoint_t c, float lMin, centerCallback triangleCenter, ALLEGRO_COLOR baseColor);
 void polygonFractal(polygon_t poly, float lMin, float lConstant);
+void mandelbrotFractal(double x0, double y0, double xf, double yf);
+void mandelbrot(double x0, double y0, double xf, double yf)
 int checkTriangleParams(parseTriangulo_t info);
 int checkPolygonParams(parsePoligono_t info);
 int checkMandelbrotParams(parseMandelbrot_t info);
@@ -41,7 +44,7 @@ int main(int argc, char** argv)
     }
 
     //si no hubo error, validar los datos ingresador por el usuario \
-    dependiendo de que fractal haya seleccionado
+    //dependiendo de que fractal haya seleccionado
     if((info->modo == TRIANGULO) && !(checkTriangleParams(info->triangulo)))
     {
         fprintf(stderr, "Error: triangulo demasiado grande. \
@@ -117,7 +120,10 @@ int main(int argc, char** argv)
     else
     //MANDELBROT
     {
-        parseMandelbrot_t mandelbrot = info->mandelbrot;
+        parseMandelbrot_t mandelbrotinfo = info->mandelbrot;
+
+		mandelbrot(mandelbrotinfo.x0, mandelbrotinfo.y0, mandelbrotinfo.xf, mandelbrotinfo.yf);
+
     }
 
     while(1);   
@@ -143,7 +149,7 @@ int main(int argc, char** argv)
  */
 int checkTriangleParams(parseTriangulo_t info)
 {
-
+	return 1;
 }
 
 /* triangleFractal
@@ -233,7 +239,7 @@ int checkPolygonParams(parsePoligono_t info)
     unsigned long m;
 //hacer la cuenta que esta especificada arriba para m
     
-    return(m < 1000000);    //si m es menor que un millon, devolver 1, si es mayor o igual, devolver cero
+    return( m < 1000000);    //si m es menor que un millon, devolver 1, si es mayor o igual, devolver cero
 }
 
 /* polygonFractal
@@ -282,5 +288,26 @@ void polygonFractal(polygon_t poly, float lMin, float lConstant)
  */
 int checkMandelbrotParams(parseMandelbrot_t info)
 {
+	return 1;
+}
 
+/* mandelbrotFractal
+*
+* Funcion no recursiva que dibuja un esquema siguiendo el conjunto de 
+* Mandelbrot. El conjunto del Mandelbrot es un conjunto de puntos en un 
+* plano complejo que convergen siguiendo el algoritmo de fn=(fn-1)^2 + Zi 
+* donde f0 = 0 y Zi es un punto de dicho plano (Zi= X + Yi). El plano queda 
+* restringido por los valores x0, y0, xf e yf.
+* 
+*
+* Recibe:
+* x0: valor mínimo en el eje x
+* y0: valor mínimo en el eje y
+* xf: valor máximo en el eje x
+* yf: valor máximo en el eje y
+*/
+void mandelbrotFractal(double x0, double y0, double xf, double yf)
+{
+	//mandelbrot(x0, y0, xf, yf);
+	return;
 }

@@ -1,6 +1,6 @@
 #include "Mandelbrot.h"
-#include "geoLib.h"
 
+#define ALLEGRO_STATICLINK
 
 int mandelbrot_set(double real, double imaginary, double maxValue, double pasoX, double pasoY);			//Mandelbrot: pinta los pixeles del display
 double profManPix(double real, double imaginary, double maxValue, int nMax);							//revisa la profundidad del algoritmo
@@ -10,11 +10,6 @@ double granulacion(double p0, double pf, double resolucion);												//Granul
 
 void mandelbrot(double x0, double y0, double xf, double yf)
 {
-	double x0 = -2.0;
-	double xf = 2.0;
-	double y0 = -2.0;
-	double yf = 2.0;
-	//ejemplo de valores*/
 
 	al_init();
 	{
@@ -46,6 +41,7 @@ void mandelbrot(double x0, double y0, double xf, double yf)
 		al_destroy_display(display);
 		
 	}
+	return;
 }
 
 
